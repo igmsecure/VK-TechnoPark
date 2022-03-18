@@ -1,0 +1,11 @@
+543 136 country_name_0
+467 1957 country_name_1
+452 3385 country_name_2
+710 1646 country_name_3
+887 2526 country_name_4
+283 2 country_name_5
+538 2172 country_name_6
+383 913 country_name_7
+27 962 country_name_8
+string 3814 country_name_9
+924 2584 country_name_10
