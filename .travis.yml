@@ -3,7 +3,9 @@ sudo: required
 language: cpp
 os: osx
 
-
+branches:
+  only:
+    - dev
 
 
 install:
