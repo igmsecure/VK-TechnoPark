@@ -1,0 +1,41 @@
+dist: bionic
+sudo: required
+language: cpp
+os: osx
+
+branches:
+  only:
+    - dev
+
+
+install:
+
+  - CWD=$PWD
+  - source ./ci/install.sh
+  - cd $CWD/ci && unzip cpplint.zip && cd ..
+ 
+
+before_install:
+  - test -n $TRAVIS_COMPILER && unset TRAVIS_COMPILER
+  - test -n $CXX && unset CXX
+  - test -n $CXX_FOR_BUILD && unset CXX_FOR_BUILD
+  - test -n $CC && unset CC
+  - test -n $CC_FOR_BUILD && unset CC_FOR_BUILD
+
+  - test -n $CC && unset CC
+
+
+
+before_script:
+  - source ./ci/run.sh
+
+script:
+  - mkdir build
+  - cd build
+  - cmake ..
+  - cmake --build .
+  - valgrind --tool=memcheck ./TP-HW1 < $CWD/project/testing/data/case1/in.txt
+  - cd ./project/testing
+  - touch custom_in.txt
+  - valgrind --tool=memcheck ./TP-TESTING-HW1 $CWD/project/testing/data 55
+  - bash <(curl -s https://codecov.io/bash)
